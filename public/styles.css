@@ -1,0 +1,29 @@
+
+html {
+  height: 100%;
+}
+
+
+body {
+  background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.7)), url("/img/torontoSkyline.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.time{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 13rem;
+  color: white;
+}
+
+.time h1 {
+  font-size: 5rem;
+}
+
+span {
+  font-size: 4rem;
+}
+

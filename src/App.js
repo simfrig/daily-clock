@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+
+
+function App() { 
+
+  
+  
+  const [greetings, setGreetings] = useState('');
+  let date = new Date();
+  let specificTime = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false})
+
+  let hour = date.getHours();
+
+ function myGreetings() {
+    if (hour < 12) {
+      setGreetings("Good Morning Toronto!");
+    } else if (hour > 12) {
+      setGreetings("Good Afternoon Toronto!");
+    }
+  }
+
+  
+  
+  return ( 
+<div className = "App" >
+    <div className = "time">
+    <h1 className = "title">{specificTime}</h1>
+    <span>{greetings}</span> 
     </div>
+</div>
   );
 }
 
