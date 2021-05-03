@@ -46,10 +46,12 @@ function weatherBalloon(cityID) {
 
 const [description, setDescription] = useState("");
 const [temp, setTemp] = useState("");
+const [icon, setIcon] = useState("");
 
 
 function drawWeather(d) {
   let celcius = Math.round(parseFloat(d.main.temp)-273.15);
+  setIcon(src={"http://openweathermap.org/img/wn/" + d.weather[0].icon + "@2x.png"};
   setDescription(d.weather[0].description);
   setTemp(celcius + '°C');
 }
@@ -72,6 +74,7 @@ window.onLoad = weatherBalloon(6167865)
     </div>
 
 <div id="weatherWidget">
+<div className="icon">{icon}</div>
 <h1 className="description">{description}</h1>
 <h1 className="temp">{temp}</h1>
 </div>
