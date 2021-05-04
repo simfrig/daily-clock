@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Dropdown } from "react-bootstrap";
+import DropdownButton from 'react-bootstrap/DropdownButton'
+
 
 
 
@@ -9,11 +12,13 @@ function App() {
   setInterval(myGreetings);
   setInterval(currentTime);
 
+  let date = new Date();
+  let hour = date.getHours();
+
   const [greetings, setGreetings] = useState('');
   const [time, setTime] = useState('');
   
-  let date = new Date();
-  let hour = date.getHours();
+  
 
   function currentTime() {
   let date = new Date();
@@ -25,16 +30,22 @@ function App() {
     function myGreetings() {
       if (hour < 12) {
       setGreetings("Good Morning Toronto!");
-    } else if (hour > 12) {
+    } if (hour > 12) {
       setGreetings("Good Afternoon Toronto!");
+    } if (hour > 17) {
+      setGreetings("Good Evening Toronto!")
+    } if (hour > 21) {
+      setGreetings("Goodnight Toronto!")
     }
   }
 
 /* Weather Api Code */
 
-function weatherBalloon(cityID) {
+
+/* CODE COMMENTED OUT TO NOT EXCEED OPEN WEATHER API LIMIT
+function weatherBalloon(cityName) {
   let key = "2bd5bebeca4a3808cf5577330fe777d4"
-  fetch("http://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&appid=" + key)
+  fetch("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + key)
   .then(function(resp) {return resp.json()}) // Convert data to json
   .then(function(data) {
   drawWeather(data); // Call drawWeather
@@ -46,22 +57,21 @@ function weatherBalloon(cityID) {
 
 const [description, setDescription] = useState("");
 const [temp, setTemp] = useState("");
-const [icon, setIcon] = useState("");
+
 
 
 
 function drawWeather(d) {
   let celcius = Math.round(parseFloat(d.main.temp)-273.15);
-  setIcon(`http://openweathermap.org/img/wn/${d.weather[0].icon}@2x.png`)
   setDescription(d.weather[0].description);
   setTemp(celcius + '°C');
 }
 
-window.onLoad = weatherBalloon(6167865)
+window.onLoad = weatherBalloon("Toronto")
 
 
 
-
+*/
 
 
 
@@ -74,11 +84,27 @@ window.onLoad = weatherBalloon(6167865)
     <span>{greetings}</span> 
     </div>
 
-<div id="weatherWidget">
-<img src={{icon}} />
-<h1 className="description">{description}</h1>
-<h1 className="temp">{temp}</h1>
-</div>
+  <div className="weatherWidget">
+    <h1 className="description">CLOUDY</h1>
+    <h1 className="temp">9 Degree Celsius</h1>
+  </div>
+
+  
+  
+  <div className="locationAdd">
+   <DropdownButton  
+    id="dropdownButton"
+    menuAlign="right" 
+    title="+"
+    > 
+    <Dropdown.Item as="button">Seoul</Dropdown.Item>
+    </DropdownButton> 
+
+   
+
+    
+  </div>
+  
 </div>
   );
 

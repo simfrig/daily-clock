@@ -27,11 +27,44 @@ span {
   font-size: 4rem;
 }
 
-.description {
+
+
+.weatherWidget {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
   color: white;
 }
 
-.temp {
+.weatherWidget .description {
+  margin-bottom: -20px;
+}
+
+.locationAdd {
+  display: flex;
+  position: fixed;
+  top: 45px;
+  right: 50px;
+  bottom: 300px;
+}
+
+#dropdownButton {
+  background-color: transparent;
+  border: solid white;
   color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+}
+#dropdownButton:hover {
+  background-color: white;
+  border-color: transparent;
+  color: black;
 }
 
