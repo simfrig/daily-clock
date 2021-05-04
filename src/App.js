@@ -74,7 +74,8 @@ window.onLoad = weatherBalloon("Toronto")
 */
 
 
-
+let Seoul = "Seoul";
+let Toronto = "Toronto";
 
 
   return ( 
@@ -92,13 +93,15 @@ window.onLoad = weatherBalloon("Toronto")
   
   
   <div className="locationAdd">
-   <DropdownButton  
-    id="dropdownButton"
-    menuAlign="right" 
-    title="+"
-    > 
-    <Dropdown.Item as="button">Seoul</Dropdown.Item>
-    </DropdownButton> 
+  <Dropdown>
+    <Dropdown.Toggle id="dropdownButton"> 
+      +
+    </Dropdown.Toggle> 
+    <Dropdown.Menu className="dropdown-menu" align="right">
+      <Dropdown.Item className="dropdown-item"as="button">{Seoul ? Toronto : Seoul}</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown>
+   
 
    
 

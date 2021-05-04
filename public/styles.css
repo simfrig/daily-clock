@@ -44,10 +44,8 @@ span {
 
 .locationAdd {
   display: flex;
+  margin: -415px 0px 0px 1220px;
   position: fixed;
-  top: 45px;
-  right: 50px;
-  bottom: 300px;
 }
 
 #dropdownButton {
@@ -61,10 +59,40 @@ span {
   border-radius: 50%;
   cursor: pointer;
   outline: none;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 #dropdownButton:hover {
   background-color: white;
   border-color: transparent;
   color: black;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.dropdown-menu {
+  background-color: transparent;
+  color: black;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.dropdown-item {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background:linear-gradient(rgba(116, 112, 112, 0.7), rgba(116, 112, 112, 0.7));
+  border-radius: 50px;
+
 }
 
