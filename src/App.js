@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import DropdownButton from 'react-bootstrap/DropdownButton'
+
 
 
 
@@ -24,8 +24,6 @@ function App() {
   let date = new Date();
   setTime(date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false}));
   }
-
-  
 
     function myGreetings() {
       if (hour < 12) {
@@ -69,13 +67,19 @@ function drawWeather(d) {
 
 window.onLoad = weatherBalloon("Toronto")
 
-
-
 */
 
+const [city, setCity] = useState("Seoul")
 
+
+function changeInfo() {
 let Seoul = "Seoul";
 let Toronto = "Toronto";
+setCity(Toronto)
+}
+
+
+
 
 
   return ( 
@@ -86,7 +90,7 @@ let Toronto = "Toronto";
     </div>
 
   <div className="weatherWidget">
-    <h1 className="description">CLOUDY</h1>
+    <h1 className="description">Cloudy</h1>
     <h1 className="temp">9 Degree Celsius</h1>
   </div>
 
@@ -98,13 +102,15 @@ let Toronto = "Toronto";
       +
     </Dropdown.Toggle> 
     <Dropdown.Menu className="dropdown-menu" align="right">
-      <Dropdown.Item className="dropdown-item"as="button">{Seoul ? Toronto : Seoul}</Dropdown.Item>
+      <Dropdown.Item 
+      className="dropdown-item"
+      as="button"
+      onClick={changeInfo}
+      >
+      {city}
+      </Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
-   
-
-   
-
     
   </div>
   
