@@ -9,33 +9,51 @@ import { Dropdown } from "react-bootstrap";
 
 function App() { 
 
-  setInterval(myGreetings);
+  const [time, setTime] = useState('');
+  const [city, setCity] = useState('Toronto');
+
   setInterval(currentTime);
 
   let date = new Date();
   let hour = date.getHours();
 
-  const [greetings, setGreetings] = useState('');
-  const [time, setTime] = useState('');
-  
-  
+ const cities = {
+   Toronto: "Toronto",
+   Seoul: "Seoul"
+ }
 
-  function currentTime() {
-  let date = new Date();
-  setTime(date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false}));
-  }
+function changeCity() {
+ (city === cities.Toronto? setCity(cities.Seoul): setCity(cities.Toronto))
+}
 
-    function myGreetings() {
+
+
+
+  function myGreetings() {
       if (hour < 12) {
-      setGreetings("Good Morning Toronto!");
+      return "Good Morning " + city + "!";
     } if (hour > 12) {
-      setGreetings("Good Afternoon Toronto!");
+      return "Good Afternoon "+ city + "!";
     } if (hour > 17) {
-      setGreetings("Good Evening Toronto!")
+      return "Good Evening "+ city + "!";
     } if (hour > 21) {
-      setGreetings("Goodnight Toronto!")
+      return "Goodnight "+ city + "!";
     }
   }
+
+ 
+
+  function currentTime() {
+    let date = new Date();
+  
+  (city === cities.Toronto 
+    ? setTime(date.toLocaleTimeString("en-GB", {hour: '2-digit', minute:'2-digit'})) 
+  : setTime(date.toLocaleTimeString("ko-KR", {timeZone: "Asia/Seoul", hour: '2-digit', minute:'2-digit', hour12: false})));   
+  }
+
+
+
+  
 
 /* Weather Api Code */
 
@@ -65,28 +83,25 @@ function drawWeather(d) {
   setTemp(celcius + '°C');
 }
 
-window.onLoad = weatherBalloon("Toronto")
+window.onLoad = weatherBalloon(city)
 
 */
 
-const [city, setCity] = useState("Seoul")
 
 
-function changeInfo() {
-let Seoul = "Seoul";
-let Toronto = "Toronto";
-setCity(Toronto)
-}
+
+
+
 
 
 
 
 
   return ( 
-<div className = "App" >
+  <div className = {(city === cities.Seoul? "App-Seoul" : "App")} >
     <div className = "time">
     <h1 className = "title">{time}</h1>
-    <span>{greetings}</span> 
+    <span>{myGreetings()}</span> 
     </div>
 
   <div className="weatherWidget">
@@ -105,9 +120,9 @@ setCity(Toronto)
       <Dropdown.Item 
       className="dropdown-item"
       as="button"
-      onClick={changeInfo}
+      onClick={changeCity}
       >
-      {city}
+      {(city === cities.Toronto? "Seoul": "Toronto")}
       </Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
