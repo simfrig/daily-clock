@@ -9,28 +9,31 @@ import { Dropdown } from "react-bootstrap";
 
 function App() { 
 
+  setInterval(currentTime);
+
   const [time, setTime] = useState('');
   const [city, setCity] = useState('Toronto');
 
-  setInterval(currentTime);
 
   let date = new Date();
   let hour = date.getHours();
+  let koreaHour = date.toLocaleTimeString("en-GB", {timeZone: "Asia/Seoul", hour: '2-digit'});
+  
+let Toronto = "Toronto";
+let Seoul = "Seoul"
 
- const cities = {
-   Toronto: "Toronto",
-   Seoul: "Seoul"
- }
-
+ 
 function changeCity() {
- (city === cities.Toronto? setCity(cities.Seoul): setCity(cities.Toronto))
+ (city === Toronto ? setCity(Seoul): setCity(Toronto));
+
 }
 
 
 
 
   function myGreetings() {
-      if (hour < 12) {
+    if (city === Toronto){
+       if (hour < 12) {
       return "Good Morning " + city + "!";
     } if (hour > 12) {
       return "Good Afternoon "+ city + "!";
@@ -38,18 +41,33 @@ function changeCity() {
       return "Good Evening "+ city + "!";
     } if (hour > 21) {
       return "Goodnight "+ city + "!";
-    }
+    } } else if (city === Seoul) {
+       if (koreaHour < 12) {
+      return "Good Morning " + city + "!";
+    } if (koreaHour > 12) {
+      return "Good Afternoon "+ city + "!";
+    } if (koreaHour > 17) {
+      return "Good Evening "+ city + "!";
+    } if (koreaHour > 21) {
+      return "Goodnight "+ city + "!";
+    } }
   }
 
  
 
   function currentTime() {
-    let date = new Date();
-  
-  (city === cities.Toronto 
-    ? setTime(date.toLocaleTimeString("en-GB", {hour: '2-digit', minute:'2-digit'})) 
-  : setTime(date.toLocaleTimeString("ko-KR", {timeZone: "Asia/Seoul", hour: '2-digit', minute:'2-digit', hour12: false})));   
+  let date = new Date();
+  let torontoTime = date.toLocaleTimeString("en-GB", {hour: '2-digit', minute:'2-digit'});
+  let seoulTime = date.toLocaleTimeString("ko-KR", {timeZone: "Asia/Seoul", hour: '2-digit', minute:'2-digit', hour12: false});
+
+  if (city === Toronto) {
+    setTime(torontoTime)
+  } else if (city === Seoul) {
+    setTime(seoulTime)
   }
+
+  }
+
 
 
 
@@ -98,7 +116,7 @@ window.onLoad = weatherBalloon(city)
 
 
   return ( 
-  <div className = {(city === cities.Seoul? "App-Seoul" : "App")} >
+  <div className = {(city === Seoul? "App-Seoul" : "App")} >
     <div className = "time">
     <h1 className = "title">{time}</h1>
     <span>{myGreetings()}</span> 
@@ -122,7 +140,7 @@ window.onLoad = weatherBalloon(city)
       as="button"
       onClick={changeCity}
       >
-      {(city === cities.Toronto? "Seoul": "Toronto")}
+      {(city === Toronto? "Seoul" : "Toronto")}
       </Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
