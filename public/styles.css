@@ -10,6 +10,17 @@
   left: 0px;
 }
 
+.App-Seoul {
+  background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.7)), url("/img/seoul.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
 .time{
   display: flex;
   flex-direction: column;
