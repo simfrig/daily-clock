@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import { Dropdown } from "react-bootstrap";
+import Clock from 'react-live-clock';
 
 
 
@@ -58,26 +59,6 @@ function changeCity() {
   let seoulTime = date.toLocaleTimeString("ko-KR", {timeZone: "Asia/Seoul", hour: '2-digit', minute:'2-digit', hour12: false});
 
 
-  
-
-  useEffect(() => {
-    if (city === Toronto) {
-    setTime(torontoTime)
-  } else if (city === Seoul) {
-    setTime(seoulTime)
-  }
-  }, [city])
-
-  
-
-
-
-
-
-
-
-
-
 
   
 
@@ -126,7 +107,7 @@ window.onLoad = weatherBalloon(city)
   return ( 
   <div className = {(city === Seoul? "App-Seoul" : "App")} >
     <div className = "time">
-    <h1 className = "title">{time}</h1>
+    <h1 className = "title">{(city === Toronto? <Clock format={'HH:mm'} ticking={true} timezone={'America/New_York'} /> : <Clock format={'HH:mm'} ticking={true} timezone={'Asia/Seoul'} />)}</h1>
     <span>{myGreetings()}</span> 
     </div>
 
