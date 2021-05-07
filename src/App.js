@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import Clock from 'react-live-clock';
 
@@ -10,10 +10,7 @@ import Clock from 'react-live-clock';
 
 function App() { 
 
- 
-  
 
-  const [time, setTime] = useState('');
   const [city, setCity] = useState('Toronto');
 
 
@@ -65,7 +62,6 @@ function changeCity() {
 /* Weather Api Code */
 
 
-/* CODE COMMENTED OUT TO NOT EXCEED OPEN WEATHER API LIMIT
 function weatherBalloon(cityName) {
   let key = "2bd5bebeca4a3808cf5577330fe777d4"
   fetch("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + key)
@@ -90,9 +86,9 @@ function drawWeather(d) {
   setTemp(celcius + '°C');
 }
 
-window.onLoad = weatherBalloon(city)
+window.onLoad = weatherBalloon((city === Toronto ? Toronto : Seoul))
 
-*/
+
 
 
 
@@ -112,8 +108,8 @@ window.onLoad = weatherBalloon(city)
     </div>
 
   <div className="weatherWidget">
-    <h1 className="description">Cloudy</h1>
-    <h1 className="temp">9 Degree Celsius</h1>
+    <h1 className="description">{description}</h1>
+    <h1 className="temp">{temp}</h1>
   </div>
 
   
