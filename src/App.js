@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Dropdown } from "react-bootstrap";
 
 
@@ -9,7 +9,8 @@ import { Dropdown } from "react-bootstrap";
 
 function App() { 
 
-  setInterval(currentTime);
+ 
+  
 
   const [time, setTime] = useState('');
   const [city, setCity] = useState('Toronto');
@@ -25,7 +26,6 @@ let Seoul = "Seoul"
  
 function changeCity() {
  (city === Toronto ? setCity(Seoul): setCity(Toronto));
-
 }
 
 
@@ -53,20 +53,28 @@ function changeCity() {
     } }
   }
 
- 
 
-  function currentTime() {
-  let date = new Date();
-  let torontoTime = date.toLocaleTimeString("en-GB", {hour: '2-digit', minute:'2-digit'});
+  let torontoTime = date.toLocaleTimeString("en-GB", {hour: '2-digit', minute:'2-digit', second:'2-digit'});
   let seoulTime = date.toLocaleTimeString("ko-KR", {timeZone: "Asia/Seoul", hour: '2-digit', minute:'2-digit', hour12: false});
 
-  if (city === Toronto) {
+
+  
+
+  useEffect(() => {
+    if (city === Toronto) {
     setTime(torontoTime)
   } else if (city === Seoul) {
     setTime(seoulTime)
   }
+  }, [city])
 
-  }
+  
+
+
+
+
+
+
 
 
 
@@ -129,7 +137,7 @@ window.onLoad = weatherBalloon(city)
 
   
   
-  <div className="locationAdd">
+  <div className="locationAddButton">
   <Dropdown>
     <Dropdown.Toggle id="dropdownButton"> 
       +
@@ -144,10 +152,10 @@ window.onLoad = weatherBalloon(city)
       </Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
-    
   </div>
   
 </div>
+
   );
 
   
