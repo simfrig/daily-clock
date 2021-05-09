@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import Clock from 'react-live-clock';
+import _ from 'lodash';
 
 
 
@@ -50,13 +51,6 @@ function changeCity() {
       return "Goodnight "+ city + "!";
     } }
   }
-
-
-  let torontoTime = date.toLocaleTimeString("en-GB", {hour: '2-digit', minute:'2-digit', second:'2-digit'});
-  let seoulTime = date.toLocaleTimeString("ko-KR", {timeZone: "Asia/Seoul", hour: '2-digit', minute:'2-digit', hour12: false});
-
-
-
   
 
 /* Weather Api Code */
@@ -103,13 +97,13 @@ window.onLoad = weatherBalloon((city === Toronto ? Toronto : Seoul))
   return ( 
   <div className = {(city === Seoul? "App-Seoul" : "App")} >
     <div className = "time">
-    <h1 className = "title">{(city === Toronto? <Clock format={'HH:mm'} ticking={true} timezone={'America/New_York'} /> : <Clock format={'HH:mm'} ticking={true} timezone={'Asia/Seoul'} />)}</h1>
+    <h1 className = "title">{(city === Toronto? <Clock format={'h:mm a'} ticking={true} timezone={'America/New_York'} /> : <Clock format={'h:mm a'} ticking={true} timezone={'Asia/Seoul'} />)}</h1>
     <span>{myGreetings()}</span> 
     </div>
 
   <div className="weatherWidget">
-    <h1 className="description">{description}</h1>
-    <h1 className="temp">{temp}</h1>
+  <h1 className="temp">{temp}</h1>
+  <h1 className="description">{_.startCase(description)}</h1>
   </div>
 
   

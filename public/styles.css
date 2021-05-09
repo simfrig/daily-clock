@@ -50,7 +50,11 @@ span {
 }
 
 .weatherWidget .description {
-  margin-bottom: -20px;
+  margin-bottom: -10px;
+}
+
+.weatherWidget .temp {
+margin-bottom: -20px;
 }
 
 .locationAddButton {
